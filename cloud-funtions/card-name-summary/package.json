@@ -1,0 +1,9 @@
+{
+  "name": "bnol-finish-stat",
+  "version": "1.0.0",
+  "dependencies": {
+      "@google-cloud/datastore": "4.2.0",
+      "cors": "2.8.5",
+      "uuid": "3.3.2"
+  }
+}

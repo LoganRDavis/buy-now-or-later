@@ -1,0 +1,89 @@
+body {
+	background: #78B400;
+	background: -moz-linear-gradient(left, #78B400 0%, #80C100 50%, #78B400 100%);
+	background: -webkit-linear-gradient(left, #78B400 0%, #80C100 50%, #78B400 100%);
+	background: linear-gradient(to right, #78B400 0%, #80C100 50%, #78B400 100%);
+	background: ;
+} 
+
+.jumbotron {
+	padding: 0 !important;
+	display: flex;	
+	flex-wrap: wrap;
+	justify-content: center;
+	color: white;
+	background:
+		linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+		linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+		linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+		linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+		linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+		linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+	background-color: #131313;
+	background-size: 20px 20px;
+	opacity: 1;
+}
+
+.jumbotron img {
+	height: 50%;
+	width: 50%;
+	max-width: 150px;	
+	max-height: 150px;
+	margin: 25px;
+}
+
+.ads {
+	background:
+		linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+		linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+		linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+		linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+		linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+		linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+	border-radius: 5px;
+}
+
+.col-sm-8 {
+	background: white;
+	border: solid;
+	border-color: #78B400;
+	border-radius: 5px;
+}
+
+.card img {
+	padding: 10px;
+	max-width: 600px;
+	margin: auto;
+	border-radius: 10%;
+}
+
+.btn-success, .btn-danger {
+	font-weight: bold;
+	font-size: 1.2em;
+	width: 33%;
+	max-width: 150px;
+}
+
+#cards {
+	display: none;
+}
+
+.card {
+	min-height: 600px;
+}
+
+.card button {
+	margin: 10px;
+}
+
+.resultStat {
+    color: green;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 860px) {
+	.jumbotron {
+		display: block;
+	}
+}
