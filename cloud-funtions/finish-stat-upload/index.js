@@ -7,6 +7,27 @@ const datastore = new Datastore();
 function bnolFinishStat(cardName, browser, mobileDevice, duration, ipAddress) {
   this.createdDate = new Date();
   this.id = uuidv4();
+
+  if (typeof(cardName) !== 'string' || cardName.length === 0) {
+    throw new Error('Invalid card name');
+  }
+
+  if (typeof(browser) !== 'string' || browser.length === 0) {
+    throw new Error('Invalid browser');
+  }
+
+  if (typeof(mobileDevice) !== 'boolean') {
+    throw new Error('Invalid mobile device');
+  }
+
+  if (typeof(duration) !== 'number' || isNaN(duration)) {
+    throw new Error('Invalid duration');
+  }
+
+  if (typeof(ipAddress) !== 'string' || ipAddress.length === 0) {
+    throw new Error('Invalid ip address');
+  }
+
   this.cardName = cardName;
   this.browser = browser;
   this.mobileDevice = mobileDevice;

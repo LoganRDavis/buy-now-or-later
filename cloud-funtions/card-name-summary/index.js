@@ -1,46 +1,32 @@
 'use strict';
 const cors = require('cors')({origin: true});
-const uuidv4 = require('uuid/v4');
 const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
 
-function bnolFinishStat(cardName, browser, mobileDevice, duration, ipAddress) {
-  this.createdDate = new Date();
-  this.id = uuidv4();
-  this.cardName = cardName;
-  this.browser = browser;
-  this.mobileDevice = mobileDevice;
-  this.duration = duration;
-  this.ipAddress = ipAddress;
+function getCardNames() {
+  return datastore.createQuery('bnolFinishStat')
+  	.select(['cardName'])
+    .run();
 }
 
-function saveStat(bnolFinishStat) { 
-  const entity = {
-    key: datastore.key(['bnolFinishStat', bnolFinishStat.id]),
-    data: bnolFinishStat,
-  };
-  return datastore.save(entity);
-}
-
-exports.acceptStat = (req, res) => {
-  return cors(req, res, () => {
-    let body = req.body;
-    let newStat;
-
-    try {
-      newStat = new bnolFinishStat(
-        body.cardName,
-        body.browser,
-        body.mobileDevice,
-        body.duration,
-        req.ip
-      );
-    } catch (err) {
-      return res.status(400).send(err);
+function analyze(bnolFinishStats) {
+  let result = { total: 0};
+  for(let bnolFinishStat of bnolFinishStats) {
+    let cardName = bnolFinishStat.cardName;
+    if(!(cardName in result)) {
+      result[cardName] = 0;
     }
+    result[cardName] += 1;
+    result.total += 1;
+  }
+  return result;
+}
 
-    return saveStat(newStat).then(function() {
-      return res.status(201).send();
+exports.getSummary = (req, res) => {
+  return cors(req, res, () => {
+    return getCardNames().then(function([bnolFinishStats]) {
+      let result = analyze(bnolFinishStats);
+      return res.status(200).send(result);
     }).catch((err) => {
       console.log(err);
       return res.status(500).send(err);
